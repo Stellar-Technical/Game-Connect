@@ -1,11 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import cron from 'node-cron';
-import { fetchDataNFT } from '../api/pnix/fetchNFT';
+import { fetchAndSaveNFTData } from '../api/pnix/route'
 
 // ตั้งค่า Cron Job ให้ทำงานทุกๆ 1 นาที
-cron.schedule('* * * * *', async () => {
-  console.log('Running a task every minute');
-  await fetchDataNFT();
+cron.schedule('30 * * * *', async () => {
+  console.log('Running a task 30 second');
+  try {
+    await fetchAndSaveNFTData(); // เรียกใช้งานฟังก์ชัน
+  } catch (error) {
+    console.error('Error in cron job:', error);
+  }
 });
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

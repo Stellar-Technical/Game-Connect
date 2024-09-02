@@ -1,23 +1,18 @@
 import axios from 'axios';
 import * as admin from 'firebase-admin';
-import { ServiceAccount } from 'firebase-admin';
+import { NextResponse } from 'next/server';
+import serviceAccount from '../../../firebase/serviceAccountKey.json';
 
-// ตรวจสอบว่า admin ถูก initialised หรือไม่
 if (!admin.apps.length) {
-  const serviceAccount: ServiceAccount = JSON.parse(
-    process.env.NEXT_PUBLIC_FIREBASE_SERVICE_ACCOUNT_KEY || '{}'
-  );
-
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL
-  });
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+        databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL
+    });
 }
 
 const db = admin.database();
 
-// ฟังก์ชันในการดึงข้อมูลจาก API
-export const fetchDataNFT = async (): Promise<void> => {
+export async function fetchAndSaveNFTData(): Promise<void> {
     const url = 'https://crow-router.pnix.exchange/dex';
     const headers = {
         'accept': '*/*',
@@ -32,16 +27,11 @@ export const fetchDataNFT = async (): Promise<void> => {
         params: []
     };
 
-    console.log(payload);
-
     try {
-        // ดึงข้อมูลจาก API ด้วย axios
         const response = await axios.post(url, payload, { headers });
         const result = response.data.result;
 
-        // ตรวจสอบว่ามีข้อมูล result หรือไม่
         if (result && result.length > 0) {
-            // เรียงลำดับข้อมูลและแทนที่ค่า pair
             const updatedResult = result.map((item: any) => {
                 switch (item.pair) {
                     case "0x8697bed5499737c10ab5adb4bc7952fe457b50e0":
@@ -66,14 +56,14 @@ export const fetchDataNFT = async (): Promise<void> => {
                 return item;
             });
 
-            // อ้างอิงตำแหน่งใน Firebase Realtime Database
-            const ref = db.ref('nft_data');
-            await ref.set(result);
+            const ref = db.ref('nftData');
+            await ref.set(updatedResult);
 
             console.log('NFT data saved successfully!');
+        } else {
+            console.log('No data available');
         }
-
     } catch (error) {
         console.error('Error fetching NFT data:', error);
     }
-};
+}

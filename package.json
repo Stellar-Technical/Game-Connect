@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "cron": "npx ts-node scripts/fetchData.ts",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,13 +15,14 @@
     "axios": "^1.7.5",
     "clsx": "^2.1.1",
     "express": "^4.19.2",
-    "firebase": "^10.13.0",
+    "firebase": "^10.13.1",
     "firebase-admin": "^12.4.0",
     "flowbite-react": "^0.10.1",
     "framer-motion": "^11.3.31",
     "next": "14.2.6",
     "next-auth": "^4.24.7",
     "node-cron": "^3.0.3",
+    "node-fetch": "^3.3.2",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2",
     "usehooks-ts": "^3.1.0"
@@ -36,6 +38,7 @@
     "eslint-config-next": "14.2.6",
     "postcss": "^8.4.43",
     "tailwindcss": "^3.4.10",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
