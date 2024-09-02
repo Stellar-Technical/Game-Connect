@@ -2,4 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'flowbite';
+:root {
+    --color-midnight-blue: #1B263B;
+    --color-electric-blue: #00C2FF;
+    --color-cyber-purple: #6A1B9A;
+
+    --color-neon-green:#39FF14;
+    --color-lunar-gray:#C4C4C4;
+
+    --color-galaxy-pink:#FF69B4;
+    --color-starry-yellow:#FFD700;
+
+    --color-dark-matter-black:#0D0D0D;
+    --color-white-smoke:#F5F5F5;
+}

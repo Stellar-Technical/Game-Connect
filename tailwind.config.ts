@@ -1,19 +1,31 @@
 import type { Config } from "tailwindcss";
-import flowbite from "flowbite-react/tailwind";
+const { nextui } = require("@nextui-org/react");
 
 const config: Config = {
   content: [
-    "./node_modules/flowbite-react/lib/**/*.js",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./public/**/*.html",
-    flowbite.content(),
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'midnight-blue': 'var(--color-midnight-blue)',
+        'electric-blue': 'var(--color-electric-blue)',
+        'cyber-purple': 'var(--color-cyber-purple)',
+        'neon-green': 'var(--color-neon-green)',
+        'lunar-gray': 'var(--color-lunar-gray)',
+        'galaxy-pink': 'var(--color-galaxy-pink)',
+        'starry-yellow': 'var(--color-starry-yellow)',
+        'dark-matter-black': 'var(--color-dark-matter-black)',
+        'white-smoke': 'var(--color-white-smoke)',
+      },
+    },
   },
-  plugins: [require("flowbite/plugin"), flowbite.plugin()],
+  darkMode: "class",
+  plugins: [nextui(),],
 };
 
 export default config;

@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
         },
         async redirect({ url, baseUrl }) {
             // Redirect user to '/overview' after login
-            return '/overview';
+            return '/admin/overview';
         },
     },
 };
