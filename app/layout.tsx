@@ -7,6 +7,7 @@ import SessionProvider from "./components/SessionProvider"
 
 import {Providers} from "./providers";
 const inter = Inter({ subsets: ["latin"] })
+// import '../lib/cron/cronJob';
 
 export const metadata: Metadata = {
     title: "Create Next App",

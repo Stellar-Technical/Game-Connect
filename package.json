@@ -6,31 +6,36 @@
     "start:server": "ts-node app/server/server.ts",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "cron": "npx ts-node scripts/fetchData.ts",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
+    "@next/env": "^14.2.7",
     "@nextui-org/react": "^2.4.6",
-    "axios": "^1.7.5",
+    "axios": "^1.7.7",
     "clsx": "^2.1.1",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "firebase": "^10.13.1",
     "firebase-admin": "^12.4.0",
     "flowbite-react": "^0.10.1",
     "framer-motion": "^11.3.31",
+    "http": "^0.0.1-security",
     "next": "14.2.6",
     "next-auth": "^4.24.7",
     "node-cron": "^3.0.3",
-    "node-fetch": "^3.3.2",
+    "node-fetch": "^2.7.0",
     "react-dom": "^18",
+    "socket.io": "^4.7.5",
     "tailwind-merge": "^2.5.2",
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
     "@iconify/react": "^5.0.2",
-    "@types/node": "^20",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.16.3",
     "@types/node-cron": "^3.0.11",
+    "@types/node-fetch": "^2.6.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
@@ -39,6 +44,6 @@
     "postcss": "^8.4.43",
     "tailwindcss": "^3.4.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5.5.4"
   }
 }
