@@ -1,8 +1,6 @@
-import axios from 'axios';
-import cron from 'node-cron';
 import fetch from 'node-fetch';
 import { ref, set } from 'firebase/database';
-import { database } from '../../../lib/firebase/firebaseConfig';
+import { database } from '../../../lib/firebase/firebaseClient';
 
 // import { database, ref, set } from '../../services/firebaseAdmin';
 

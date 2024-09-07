@@ -16,10 +16,10 @@ export const items: SidebarItem[] = [
     title: "Home",
   },
   {
-    key: "projects",
+    key: "game",
     href: "#",
     icon: "solar:widget-2-outline",
-    title: "Projects",
+    title: "Game",
     endContent: (
       <Icon className="text-default-400" icon="solar:add-circle-line-duotone" width={24} />
     ),
@@ -93,10 +93,10 @@ export const sectionItems: SidebarItem[] = [
         title: "Home",
       },
       {
-        key: "projects",
+        key: "game",
         href: "#",
         icon: "solar:widget-2-outline",
-        title: "Projects",
+        title: "Game",
         endContent: (
           <Icon className="text-default-400" icon="solar:add-circle-line-duotone" width={24} />
         ),
@@ -229,10 +229,10 @@ export const brandItems: SidebarItem[] = [
         title: "Home",
       },
       {
-        key: "projects",
+        key: "game",
         href: "#",
         icon: "solar:widget-2-outline",
-        title: "Projects",
+        title: "Game",
         endContent: (
           <Icon
             className="text-primary-foreground/60"
@@ -395,10 +395,10 @@ export const sectionNestedItems: SidebarItem[] = [
     title: "Home",
   },
   {
-    key: "projects",
+    key: "game",
     href: "#",
     icon: "solar:widget-2-outline",
-    title: "Projects",
+    title: "Game",
     endContent: (
       <Icon className="text-default-400" icon="solar:add-circle-line-duotone" width={24} />
     ),
