@@ -1,5 +1,5 @@
 "use client"
-import TokenPnix from "@/app/components/pnix/tokenPnix"
+import TokenPnix from "@/components/pnix/tokenPnix"
 
 
 export default function OverviewPage() {

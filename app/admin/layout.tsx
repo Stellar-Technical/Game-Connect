@@ -1,11 +1,14 @@
 "use client"
-
+import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { Avatar, Button, Spacer, useDisclosure } from "@nextui-org/react"
 import { Icon } from "@iconify/react"
-import SidebarDrawer from "../components/nextUIPro/sidebar-drawer"
-import Sidebar from "../components/nextUIPro/sidebar"
-import { sectionItemsWithTeams } from "../components/nextUIPro/sidebar-items"
+import SidebarDrawer from "@/components/nextUIPro/sidebar-drawer"
+import Sidebar from "@/components/nextUIPro/sidebar"
+import { sectionItemsWithTeams } from "@/components/nextUIPro/sidebar-items"
+import { usePathname } from "next/navigation"
+import { buildCurrentPath } from "@/lib/global"
+
 
 export default function AdminLayout({
     children,
@@ -13,19 +16,6 @@ export default function AdminLayout({
     children: React.ReactNode
 }>) {
     const { data: session, status } = useSession()
-
-    const listMenu = [
-        {
-            label: "Game",
-            icon: "",
-            subMenu: [
-                {
-                    label: "Night Creows",
-                    icon: "",
-                },
-            ],
-        },
-    ]
 
     if (status === "loading") {
         return <p>Loading...</p>
@@ -37,12 +27,12 @@ export default function AdminLayout({
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
+    const currentPath = buildCurrentPath(usePathname())
+
     const content = (
         <div className="relative flex h-full w-72 flex-1 flex-col p-6">
             <div className="flex items-center gap-2 px-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground">
-                   xxxx
-                </div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground">xxxx</div>
                 <span className="text-small font-bold uppercase text-foreground">Acme</span>
             </div>
             <Spacer y={8} />
@@ -56,7 +46,7 @@ export default function AdminLayout({
 
             <Spacer y={8} />
 
-            <Sidebar defaultSelectedKey="home" items={sectionItemsWithTeams} />
+            <Sidebar defaultSelectedKey={currentPath} selectedKeys={[currentPath]} items={sectionItemsWithTeams} />
 
             <Spacer y={8} />
             <div className="mt-auto flex flex-col">
@@ -82,9 +72,7 @@ export default function AdminLayout({
                     </Button>
                     <h2 className="text-medium font-medium text-default-700">Overview</h2>
                 </header>
-                <main className="mt-4 w-full overflow-visible">
-                    {children}
-                </main>
+                <main className="mt-4 w-full overflow-visible">{children}</main>
             </div>
         </div>
     )

@@ -59,10 +59,8 @@ export default function TokenPnix() {
         status === "authenticated" &&
         session.user && (
             <div>
-                <h1>Overview Page</h1>
                 {session ? (
                     <>
-                        <p>Welcome, {session.user?.name}!</p>
                         {nftData ? (
                             <>
                                 <Table isStriped aria-label="Token Night Crows">
@@ -74,7 +72,7 @@ export default function TokenPnix() {
                                     <TableBody>
                                         {nftData && Array.isArray(nftData) ? (
                                             nftData.map((item, index) => (
-                                                <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
+                                                <TableRow key={index}>
                                                     <TableCell>
                                                         {" "}
                                                         <User avatarProps={{ radius: "full", src: item.image }} description={""} name={item.pair}>
