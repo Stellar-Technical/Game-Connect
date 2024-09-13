@@ -29,8 +29,8 @@ export default function AdminLayout({
     if (!children) {
         return <div>No content available</div>
     }
-
-    const currentPath = buildCurrentPath(usePathname())
+    const pathname = usePathname();
+    const currentPath = buildCurrentPath(pathname)
 
     const content = (
         <div className="relative flex h-full w-72 flex-1 flex-col p-6">
