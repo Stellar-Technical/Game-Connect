@@ -1,36 +1,33 @@
-"use client"
-import { useState } from "react"
-import { useSession } from "next-auth/react"
-import { Avatar, Button, Spacer, useDisclosure } from "@nextui-org/react"
-import { Icon } from "@iconify/react"
-import SidebarDrawer from "@/components/nextUIPro/sidebar-drawer"
-import Sidebar from "@/components/nextUIPro/sidebar"
-import { sectionItemsWithTeams } from "@/components/nextUIPro/sidebar-items"
-import { usePathname } from "next/navigation"
-import { buildCurrentPath } from "@/lib/global"
+"use client";
 
-export default function AdminLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode
-}>) {
-    const { data: session, status } = useSession()
+import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { Avatar, Button, Spacer, useDisclosure } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
+import SidebarDrawer from "@/components/nextUIPro/sidebar-drawer";
+import Sidebar from "@/components/nextUIPro/sidebar";
+import { sectionItemsWithTeams } from "@/components/nextUIPro/sidebar-items";
+import { usePathname } from "next/navigation";
+import { buildCurrentPath } from "@/lib/global";
+
+export default function AdminLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+    // เรียก Hook ตรงนี้
+    const { data: session, status } = useSession();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const pathname = usePathname();
+    const currentPath = buildCurrentPath(pathname);
 
     if (status === "loading") {
-        return <p>Loading...</p>
+        return <p>Loading...</p>;
     }
 
     if (!session) {
-        return <p>Access Denied. Please log in.</p>
+        return <p>Access Denied. Please log in.</p>;
     }
-
-    const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
     if (!children) {
-        return <div>No content available</div>
+        return <div>No content available</div>;
     }
-    const pathname = usePathname();
-    const currentPath = buildCurrentPath(pathname)
 
     const content = (
         <div className="relative flex h-full w-72 flex-1 flex-col p-6">
@@ -61,11 +58,11 @@ export default function AdminLayout({
                 </Button>
             </div>
         </div>
-    )
+    );
 
     return (
         <div className="flex h-dvh w-full">
-            <SidebarDrawer className=" !border-r-small border-divider" isOpen={isOpen} onOpenChange={onOpenChange}>
+            <SidebarDrawer className="!border-r-small border-divider" isOpen={isOpen} onOpenChange={onOpenChange}>
                 {content}
             </SidebarDrawer>
             <div className="w-full flex-1 flex-col p-4">
@@ -78,5 +75,5 @@ export default function AdminLayout({
                 <main className="mt-4 w-full overflow-visible">{children}</main>
             </div>
         </div>
-    )
+    );
 }
