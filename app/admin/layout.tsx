@@ -9,7 +9,6 @@ import { sectionItemsWithTeams } from "@/components/nextUIPro/sidebar-items"
 import { usePathname } from "next/navigation"
 import { buildCurrentPath } from "@/lib/global"
 
-
 export default function AdminLayout({
     children,
 }: Readonly<{
@@ -26,6 +25,10 @@ export default function AdminLayout({
     }
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure()
+
+    if (!children) {
+        return <div>No content available</div>
+    }
 
     const currentPath = buildCurrentPath(usePathname())
 
