@@ -1,7 +1,8 @@
-import NextAuth from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import { NextAuthOptions } from "next-auth";
+import NextAuth from 'next-auth';
+import DiscordProvider from 'next-auth/providers/discord';
+import { NextAuthOptions } from 'next-auth';
 
+// Define NextAuth options
 export const authOptions: NextAuthOptions = {
     providers: [
         DiscordProvider({
@@ -15,10 +16,10 @@ export const authOptions: NextAuthOptions = {
     },
     callbacks: {
         async session({ session, user, token }) {
-            return session
+            return session;
         },
         async jwt({ token, user, account, profile, isNewUser }) {
-            return token
+            return token;
         },
         async redirect({ url, baseUrl }) {
             // Redirect user to '/overview' after login
@@ -27,6 +28,8 @@ export const authOptions: NextAuthOptions = {
     },
 };
 
+// Initialize NextAuth
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST }
+// Export handler as GET and POST
+export { handler as GET, handler as POST };
